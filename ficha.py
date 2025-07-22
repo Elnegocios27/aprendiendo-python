@@ -1,18 +1,17 @@
 import requests
 
-# URL de la API
-url = "https://jsonplaceholder.typicode.com/users"
+url = "https://pokeapi.co/api/v2/pokemon/charizard"
+response = requests.get(url)
 
-# Hacer la solicitud
-respuesta = requests.get(url)
-
-# Verificar si salió bien (status 200)
-if respuesta.status_code == 200:
-    datos = respuesta.json()  # Convertimos a JSON (diccionario/lista)
-    
-    for usuario in datos:
-        print("Nombre:", usuario["name"])
-        print("Email:", usuario["email"])
-        print("-" * 30)
+if response.status_code == 200:
+    data = response.json()
+    print("ID:", data["id"])
+    print("Habilidades:")
+    for habilidad in data["abilities"]:
+        print("-", habilidad["ability"]["name"])
+        
+    print("Nombre:", data["name"])
+    print("Peso:", data["weight"])
 else:
-    print("Error al acceder a la API:", respuesta.status_code)
+    print("Error al obtener los datos.")
+    
