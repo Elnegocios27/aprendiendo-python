@@ -11,6 +11,9 @@ if response.status_code == 200:
     usd_con_iva = usd * 1.21
     precio_final = usd_con_iva * cotizacion
 
+    with open("historial_conversión.txt", "a", encoding="utf-8") as archivo:
+        archivo.write(f"USD {usd} → ${precio_final:,.2f} ARS (IVA incluido)\n")
+
     print(f"price in pesos: ${precio_final:,.2f}")
 else:
     print("fatal error")
