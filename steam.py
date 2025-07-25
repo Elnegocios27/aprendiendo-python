@@ -12,7 +12,7 @@ while True:
 
     if entrada == "historial":
         try:
-            with open("historial_conversión.txt", "r", encodin="utf-8") as archivo:
+            with open("historial_conversión.txt", "r", encoding="utf-8") as archivo:
                 print("//historial of conversions//")
                 print(archivo.read())
         except FileNotFoundError:
