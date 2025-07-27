@@ -30,13 +30,11 @@ while True:
 
     if response.status_code == 200:
         data = response.json()
-    price = data["venta"]
-    usd_with_iva = usd * 1.21
-    price_finally = usd_with_iva * price
-
-    with open("history_convertion.txt", "a", encoding="utf-8") as archivo:
-        archivo.write(f"USD {usd} → ${price_finally:,.2f} ARS (IVA include)\n")
-
-    print(f"price in pesos: ${price_finally:,.2f}")
-else:
-    print("fatal error")
+        price = data["venta"]
+        usd_with_iva = usd * 1.21
+        price_finally = usd_with_iva * price
+        with open("history_convertion.txt", "a", encoding="utf-8") as archivo:
+            archivo.write(f"USD {usd} → ${price_finally:,.2f} ARS (IVA include)\n")
+        print(f"price in pesos: ${price_finally:,.2f}")
+    else:
+        print("fatal error")
