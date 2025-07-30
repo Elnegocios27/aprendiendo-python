@@ -85,7 +85,7 @@ while True:
         simbolo = '/'
     else:
         print("opcion no valida")
-        continue
+        continue 
 
     print("resultado: ", resultado)
     if isinstance(resultado, (int, float)):
