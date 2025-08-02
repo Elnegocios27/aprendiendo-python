@@ -1,97 +1,97 @@
 from datetime import datetime
-fecha = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-def sumar(a, b):
+def addition(a, b):
         return a + b
-def restar(a, b):
+def subtract(a, b):
         return a - b
-def multiplicar(a, b):
+def multiply(a, b):
         return a * b
-def dividir(a, b):
+def divide(a, b):
         if b != 0:
             return a / b
         else:
-            return "Error: Division por cero no permitida."
+            return "Error: division by zero not allowed."
 
-ultimo_resultado = None
+last_result = None
 
 while True:
 
     print("======================")
-    print("       calculadora     ")
+    print("       calculator     ")
     print("======================")
-    print("1. Sumar")
-    print("2. Restar")
-    print("3. Multiplicar")
-    print("4. Dividir")
-    print("5. Salir")
-    print("6. Historial")
+    print("1. Addition")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+    print("5. Exit")
+    print("6. History")
     print("======================")
-    print("ans significa ultimo resultado")
+    print("ans last result")
 
-    opcion = input("elegí una opción (1-5): ")
+    option = input("option (1-5): ")
     
-    if opcion == '5':
-        print("saliendo de la calculadora")
+    if option == '5':
+        print("leaving")
         break
-    if opcion == '6':
+    if option == '6':
         try:
-            with open("historial_cálculos.txt", 'r', encoding='utf-8')as archivo:
-                 print("cálculos anteriores: ")
+            with open("history_calculator.txt", 'r', encoding='utf-8')as archivo:
+                 print("previous calculations: ")
                  print(archivo.read())
         except ValueError:
-             print("no hubieron cálculos anteriores")
+             print("there were no previous calculations.")
         continue
 
-    entrada1 = input("ingrese el primer numero o ans: ")
-    if entrada1 == 'ans':
-        if ultimo_resultado is not None:
-                num1 = ultimo_resultado
+    entry1 = input("enter the first number or ans: ")
+    if entry1 == 'ans':
+        if last_result is not None:
+                num1 = last_result
         else:
-            print("no hubo un resultado anterior")
+            print("there were no previous number.")
             continue
     else:
         try:
-            num1 = float(entrada1)
+            num1 = float(entry1)
         except ValueError:
-            print("entrada invalida")
+            print("invalid entry")
             continue
 
-    entrada2 = input("ingrese el primer numero o ans: ")
-    if entrada2 == 'ans':
-        if ultimo_resultado is not None:
-                num2 = ultimo_resultado
+    entry2 = input("enter the second number or ans: ")
+    if entry2 == 'ans':
+        if last_result is not None:
+                num2 = last_result
         else:
-            print("no hubo resultado anterior")
+            print("there were no previous number.")
             continue
     else:
         try:
-             num2 = float(entrada2)
+             num2 = float(entry2)
         except ValueError:
-             print("entrada invalida")
+             print("invalid entry")
              continue
 
-    if opcion == '1':
-        resultado = sumar(num1, num2)
-        simbolo = '+'
-    elif opcion == '2':
-        resultado = restar(num1, num2)
-        simbolo = '-'
-    elif opcion == '3':
-        resultado = multiplicar(num1, num2)
-        simbolo = '*'
-    elif opcion == '4':
-        resultado = dividir(num1, num2)
-        simbolo = '/'
+    if option == '1':
+        result = addition(num1, num2)
+        symbol = '+'
+    elif option == '2':
+        result = subtract(num1, num2)
+        symbol = '-'
+    elif option == '3':
+        result = multiply(num1, num2)
+        symbol = '*'
+    elif option == '4':
+        result = divide(num1, num2)
+        symbol = '/'
     else:
-        print("opcion no valida")
+        print("invalid option.")
         continue 
 
-    print("resultado: ", resultado)
-    if isinstance(resultado, (int, float)):
-         ultimo_resultado = resultado
+    print("result: ", result)
+    if isinstance(result, (int, float)):
+         last_result = result
 
-    operacion = f"{num1} {simbolo} {num2} = {resultado}"    
+    operation = f"{num1} {symbol} {num2} = {result}"    
     
-    with open("historial_cálculos.txt", 'a', encoding='utf-8')as archivo:
-         archivo.write(f"[{fecha}] {operacion}\n")
+    with open("history_calculations_py.txt", 'a', encoding='utf-8')as archivo:
+         archivo.write(f"[{date}] {operation}\n")
